@@ -17,6 +17,18 @@
   height: 150px;
   object-fit: cover;
 }
+.quantity-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 8px 0;
+}
+
+.quantity-row select {
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
 
 .add-to-cart-btn {
   margin-top: 10px;

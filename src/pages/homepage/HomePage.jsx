@@ -14,10 +14,11 @@ const HomePage = () => {
     const [cart, setCart] = useState([]);
 
 
+
+
     useEffect( () => {
         getProducts()
-        .then((data) =>{
-            console.log("Product Api Response", data)
+        .then((data) =>{          
             setProducts(data);
         })
         .catch(() => setError("Failed to Load Products"))
@@ -28,7 +29,6 @@ const HomePage = () => {
         if(token){
             getCart()
             .then((data)=>{
-                console.log("User Cart",data);
                 setCart(data);
             })
             
