@@ -1,17 +1,21 @@
 import { useState } from 'react'
 
 import './App.css'
+import { LoginPage } from './pages/LoginPage/LoginPage' 
 import HomePage from './pages/homepage/HomePage'
+import { Route, Routes } from 'react-router-dom'
 
 
 function App() {
   
 
   return (
-   <div style={ {padding: "1rem"}} >
-    <h1>Products</h1>
-    <HomePage />
-   </div>
+    <Routes>
+      <Route path='/' element= {<HomePage />} />
+      <Route path='/login.html' element= {<LoginPage />} />
+      
+   
+    </Routes>
   )
 }
 

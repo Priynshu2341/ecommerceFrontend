@@ -1,7 +1,8 @@
 import { useEffect,useState } from "react";
 import { getProducts } from "../../api/productApi";
 import ProductCard from "./products";
-import "../../styles/product.css"
+import "../../styles/homepage/product.css"
+import { HomePageHeader } from "./HomePageHeader";
 
 
 const HomePage = () => {
@@ -25,11 +26,15 @@ const HomePage = () => {
     if(error) return <p>{error}</p>
 
     return (
-    <div className="products-container">
-        {products.map(product => (
+     <>
+        <HomePageHeader  />
+        <div className="products-container">
+        {products.map( product => (
         <ProductCard key={product.id} product={product} />
         ))}
-    </div>
+        </div>
+     </>
+       
     );
 };
 export default HomePage;
