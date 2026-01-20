@@ -1,8 +1,9 @@
 import { useEffect,useState } from "react";
-import { getProducts } from "../../api/productApi";
+import { getCart, getProducts } from "../../api/productApi";
 import ProductCard from "./products";
 import "../../styles/homepage/product.css"
 import { HomePageHeader } from "./HomePageHeader";
+
 
 
 const HomePage = () => {
@@ -10,6 +11,7 @@ const HomePage = () => {
     const [products, setProducts] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
+    const [cart, setCart] = useState([]);
 
 
     useEffect( () => {
@@ -20,14 +22,25 @@ const HomePage = () => {
         })
         .catch(() => setError("Failed to Load Products"))
         .finally(()=> setLoading(false));
-    },[])
+
+        const token = localStorage.getItem("token");
+
+        if(token){
+            getCart()
+            .then((data)=>{
+                console.log("User Cart",data);
+                setCart(data);
+            })
+            
+        }
+    },[]) 
 
     if(loading) return <p> Loading Products... </p>
     if(error) return <p>{error}</p>
 
     return (
      <>
-        <HomePageHeader  />
+        <HomePageHeader cart={cart} />
         <div className="products-container">
         {products.map( product => (
         <ProductCard key={product.id} product={product} />
