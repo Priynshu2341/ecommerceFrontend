@@ -8,7 +8,6 @@ export function HomePageHeader({ cart }) {
 
   function handleLogout() {
     logout();
-    navigate("/login");
   }
 
   const cartCount = token && cart ? cart.cartQuantity : 0;
