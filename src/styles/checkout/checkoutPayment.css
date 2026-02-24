@@ -1,5 +1,5 @@
 .checkout-box {
-  width: 400px;
+  width: 600px;
   margin: 60px auto;
   font-family: Arial, sans-serif;
 }
@@ -10,7 +10,7 @@
 }
 
 .payment-box {
-  background: white;
+  background: rgb(255, 255, 255);
   border: 1px solid #ddd;
   padding: 20px;
   border-radius: 5px;

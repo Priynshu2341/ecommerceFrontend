@@ -19,7 +19,7 @@ export function Checkoutheader({ cart }){
 
         <div className="middle-side-header">
             <p className="checkout-text">Checkout  </p>
-            <p className="checkout-items">{cartCount}</p>  
+            <p className="checkout-items">{`(${cartCount} items)`}</p>  
         </div>
 
         <div className="right-side-header">
