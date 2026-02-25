@@ -1,25 +1,42 @@
-import "../../styles/checkout/checkoutPayment.css";
-import { useAuth } from "../../auth/AuthContext";
+// /pages/checkoutpage/CheckoutPayment.jsx
 
-export function CheckoutPayment({ cart }) {
+import "../../styles/checkout/checkoutPayment.css";
+
+import { useAuth } from "../../auth/AuthContext";
+import { checkout } from "../../api/orderApi";
+
+import { useNavigate } from "react-router-dom";
+
+export function CheckoutPayment({ cart, refreshCart }) {
 
   const { token } = useAuth();
+  const navigate = useNavigate();
 
+  async function handleCheckout() {
 
-  if (!cart) {
-    return <p>Loading cart...</p>;
+    if (!token) {
+      navigate("/login");
+      return;
+    }
+
+    try { 
+      await checkout();   
+      await refreshCart();
+      navigate("/");
+
+    } catch (err) {
+      console.error("Checkout error:", err);
+      alert("Checkout failed");
+    }
   }
+
+  if (!cart) return <p>Loading cart...</p>;
 
   const cartCount = token ? cart.cartQuantity : 0;
 
-  
   const itemsTotal = cart.totalPriceCents / 100;
 
-  const shipping = cartCount > 0 ? 0 : 0;
-
-  const tax = itemsTotal * 0;
-
-  const orderTotal = itemsTotal + shipping + tax;
+  const orderTotal = itemsTotal;
 
   return (
     <div className="checkout-box">
@@ -37,7 +54,7 @@ export function CheckoutPayment({ cart }) {
 
         <Row
           label="Shipping & handling:"
-          value={shipping}
+          value={0}
         />
 
         <Row
@@ -47,7 +64,7 @@ export function CheckoutPayment({ cart }) {
 
         <Row
           label="Estimated tax (0%):"
-          value={tax}
+          value={0}
         />
 
         <hr />
@@ -60,23 +77,16 @@ export function CheckoutPayment({ cart }) {
         <button
           className="order-btn"
           disabled={cartCount === 0}
+          onClick={handleCheckout}
         >
           Place your order
         </button>
 
       </div>
 
-      {cartCount === 0 && (
-        <>
-          <p className="empty-text">Your cart is empty.</p>
-          <button className="view-btn">View products</button>
-        </>
-      )}
-
     </div>
   );
 }
-
 
 function Row({ label, value }) {
   return (
