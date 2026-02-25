@@ -4,7 +4,7 @@ import { useAuth } from "../../auth/AuthContext";
 import { addToCart } from "../../api/productApi";
 import "../../styles/homepage/product.css";
 
-const ProductCard = ({ product }) => {
+const ProductCard = ({ product,refreshCart }) => {
   const imageUrl = `http://localhost:8080/${product.image}`;
 
   const [quantity, setQuantity] = useState(1);
@@ -21,6 +21,8 @@ const ProductCard = ({ product }) => {
       productId: product.id,
       quantity: quantity,
     });
+
+    await refreshCart();
   }
 
   return (

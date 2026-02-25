@@ -22,6 +22,7 @@ export function CheckoutPayment({ cart, refreshCart }) {
     try { 
       await checkout();   
       await refreshCart();
+      alert("Order Sucessfull");
       navigate("/");
 
     } catch (err) {

@@ -5,7 +5,7 @@ import { HomePageHeader } from "./HomePageHeader";
 
 
 
-const HomePage = ( {products,cart,loading,error }) => {
+const HomePage = ( {products,cart,loading,error, refreshCart }) => {
 
  
 
@@ -17,7 +17,7 @@ const HomePage = ( {products,cart,loading,error }) => {
         <HomePageHeader cart={cart} />
         <div className="products-container">
         {products.map ( product => (
-        <ProductCard key={product.id} product={product} />
+        <ProductCard key={product.id} product={product} refreshCart = {refreshCart} />
         ))}
         </div>
      </>
