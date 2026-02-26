@@ -36,9 +36,10 @@ export function CheckoutItems({ cart }) {
               Quantity: {item.quantity}
             </p>
 
-            <text className="update-btn">
+            <button className="update-btn">
                 Update
-            </text>
+            </button>
+            
 
              <button className="delete-btn">
                 Delete

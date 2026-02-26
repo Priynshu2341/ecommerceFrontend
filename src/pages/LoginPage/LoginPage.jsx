@@ -53,11 +53,13 @@ export function LoginPage(){
 
         <button className = "login-btn"type="submit">Login</button>
 
-        <button className="register-btn" onClick={()=> navigate("/register")}>
+        <button className="register-btn" type="button"
+        onClick={()=> navigate("/register")}>
           Register
         </button>
 
-        <button className="homepage-btn" onClick={()=>navigate("/")}>
+        <button className="homepage-btn" type="button"
+        onClick={()=>navigate("/")}>
           View Products Instead
         </button>
       </form>
