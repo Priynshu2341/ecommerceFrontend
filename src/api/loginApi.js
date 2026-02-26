@@ -11,3 +11,15 @@ export const loginApi = async ({ email, password}) => {
    return response.data;
    
 }
+
+export const registerApi = async ({email,password,firstname,lastname}) =>{
+   console.log("Sending register payload:", { email, password,firstname,lastname });
+   const response = await backendApi.post("/auth/register",{
+      "email" : email,
+      "password": password,
+      "firstname" : firstname,
+      "lastname": lastname
+   });
+   console.log("register sucedded:", { email, password });
+   return response.data;
+}

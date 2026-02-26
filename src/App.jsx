@@ -6,6 +6,7 @@ import { getProducts, getCart } from "./api/productApi";
 import "./App.css";
 
 import { LoginPage } from "./pages/LoginPage/LoginPage";
+import { RegisterPage } from "./pages/registerpage/registerpage";
 import { CheckoutPage } from "./pages/checkoutpage/checkoutPage";
 import HomePage from "./pages/homepage/HomePage";
 
@@ -76,14 +77,15 @@ function App() {
       <Route path="/login" element={<LoginPage />} />
 
       <Route
-        path="/checkout"
-        element={
-          <CheckoutPage
+        path="/checkout" element={
+       <CheckoutPage
             cart={cart}
             refreshCart={refreshCart}
           />
         }
       />
+
+      <Route path="/register" element={<RegisterPage />} />
 
     </Routes>
   );

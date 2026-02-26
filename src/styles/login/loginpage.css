@@ -27,7 +27,7 @@
   border-radius: 6px;
 }
 
-.login-card button {
+.login-btn {
   width: 100%;
   padding: 10px;
   background: #ff7a18;
@@ -38,7 +38,7 @@
   cursor: pointer;
 }
 
-.login-card button:hover {
+.login-btn:hover {
   background: #ff6a00;
 }
 
@@ -47,4 +47,26 @@
   font-size: 14px;
   margin-bottom: 10px;
   text-align: center;
+}
+.register-btn{
+  width: 100%;
+  padding: 10px;
+  background: #ff7a18;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 10px;
+
+}
+
+.homepage-btn{
+  display: block;
+  margin-top: 10px;
+  margin-left: 66px;
+}
+
+.homepage-btn:hover{
+   cursor: pointer;
 }

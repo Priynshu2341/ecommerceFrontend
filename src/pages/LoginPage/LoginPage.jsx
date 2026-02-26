@@ -51,7 +51,15 @@ export function LoginPage(){
           onChange={(e) => setPassword(e.target.value)}
         />
 
-        <button type="submit">Login</button>
+        <button className = "login-btn"type="submit">Login</button>
+
+        <button className="register-btn" onClick={()=> navigate("/register")}>
+          Register
+        </button>
+
+        <button className="homepage-btn" onClick={()=>navigate("/")}>
+          View Products Instead
+        </button>
       </form>
     </div>
   );
