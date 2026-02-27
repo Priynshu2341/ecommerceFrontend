@@ -32,14 +32,15 @@ export function OrderContent(){
      
 
     return(
-      <>
+  <>
+    <div className="order-container">
       <p className="order-title">Your Orders</p>
-      {
-        orders.map(( order ) => {
+         {
+      orders.map(( order ) => {
             
-            return(
+       return(
                 
-         <div key={order.orderId}>
+       <div key={order.orderId}>
          
           <div className="info-div" >
 
@@ -70,21 +71,45 @@ export function OrderContent(){
             </p>
             
           </div>  
-            
-          
-          
+                 
            
-       </div> 
-         </div> 
-            );
-          
+          </div> 
+
+          <div className="order-detail-div">
+        {order.items.map((item) => {
+        return(     
+         <>
+          <div key={item.productID} className="image-div">
+            <img className="order-image"
+             src={item.image} 
+             alt={item.image} ></img>
+          </div> 
+
+          <div className="order-details">
+              <p className="order-name-text">{item.name}</p>
+              <p className="order-name-text">{`Amount:  $${(item.priceCents / 100).toFixed(2)}`}</p>
+              <p className="order-name-text">{`Quantity: ${item.quantity}`}</p>
+          </div>
+
+        </>
+    
        
 
-        })
+        );
+          
+        })}
+        
+          </div>
+
+       </div> 
+    
+     );
+          
+    })
       }
 
-       
-      </>  
+    </div>
+  </>  
       
     );
 }
