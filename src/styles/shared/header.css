@@ -1,5 +1,5 @@
 .header {
-  background-color: rgb(8, 79, 45);
+  background-color:  #ff7a18;
   color: white;
   padding-left: 15px;
   padding-right: 15px;
@@ -12,7 +12,7 @@
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 70px;
 }
 
 .header .left-section {
@@ -62,7 +62,7 @@
 
 .header .middle-section {
   flex: 1;
-  max-width: 850px;
+  max-width: 1000px;
   margin-left: 10px;
   margin-right: 10px;
   display: flex;
@@ -72,9 +72,12 @@
   flex: 1;
   width: 0;
   font-size: 16px;
-  height: 38px;
-  padding-left: 15px;
+  height: 45px;
+  margin-left: 10px;
+  padding-left: 17px;
   border: none;
+  outline: #ff7a18;
+  box-shadow: none;
   border-top-left-radius: 5px;
   border-bottom-left-radius: 5px;
   border-top-right-radius: 0;
@@ -82,17 +85,17 @@
 }
 
 .header .search-button {
-  background-color: rgb(186, 255, 190);
+  background-color: rgb(248, 245, 86);
   border: none;
-  width: 45px;
-  height: 40px;
+  width: 50px;
+  height: 45px;
   border-top-right-radius: 5px;
   border-bottom-right-radius: 5px;
   flex-shrink: 0;
 }
 
 .header .search-icon {
-  height: 20px;
+  height: 25px;
   margin-left: 0px;
   margin-top: 3px;
 }
@@ -120,7 +123,7 @@
 }
 
 .header .logout-link{
-  background-color: rgb(8, 79, 45);
+  background-color: #ff7a18;
   color: rgb(252, 249, 249);
   display: flex;
   align-items: center;

@@ -29,13 +29,13 @@ const ProductCard = ({ product,refreshCart }) => {
     <div className="product-card">
       <img src={imageUrl} alt={product.name} />
       <h4>{product.name}</h4>
-      <p>⭐ {product.rating.stars} ({product.rating.count})</p>
-      <strong>${(product.priceCents / 100).toFixed(2)}</strong>
+      <p className="stars">⭐ {product.rating.stars} ({product.rating.count})</p>
+      <strong className="price-text">${(product.priceCents / 100).toFixed(2)}</strong>
 
       
       <div className="quantity-row">
-        <label>Qty:</label>
-        <select
+        <label className="qty-text">Qty:</label>
+        <select className="qty-select"
           value={quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}
         >
@@ -43,6 +43,7 @@ const ProductCard = ({ product,refreshCart }) => {
             <option key={q} value={q}>{q}</option>
           ))}
         </select>
+        
       </div>
 
       <button className="add-to-cart-btn" onClick={handleAddToCart}>

@@ -35,7 +35,7 @@ export function OrderContent(){
   <>
     <div className="order-container">
       <p className="order-title">Your Orders</p>
-         {
+     {
       orders.map(( order ) => {
             
        return(
@@ -75,31 +75,39 @@ export function OrderContent(){
            
           </div> 
 
-          <div className="order-detail-div">
-        {order.items.map((item) => {
-        return(     
-         <>
-          <div key={item.productID} className="image-div">
-            <img className="order-image"
-             src={item.image} 
-             alt={item.image} ></img>
-          </div> 
+        <div className="order-detail-div">
+        {order.items.map((item) => (
+       <div key={item.productId} className="order-item-row">
+      <img
+        className="order-image"
+        src={`/${item.image}`}
+        alt={item.name}
+      />
 
-          <div className="order-details">
-              <p className="order-name-text">{item.name}</p>
-              <p className="order-name-text">{`Amount:  $${(item.priceCents / 100).toFixed(2)}`}</p>
-              <p className="order-name-text">{`Quantity: ${item.quantity}`}</p>
-          </div>
+      <div className="order-details">
+        <p className="order-name-text">{item.name}</p>
+        <p className="order-price-text">
+          Amount: ${(item.priceCents / 100).toFixed(2)}
+        </p>
+        <p className="order-quantity-text">
+          Quantity: {item.quantity}
+        </p>
 
-        </>
-    
-       
-
-        );
-          
-        })}
+       <button className="add-to-cart-order-btn">
+        <img className="add-to-cart-logo" src="/images/icons/cart-icon.png" />
         
+        Add to Cart
+      </button>
+      </div>
+
+         <div className="cancel-btn-div">
+          <button 
+          className="cancel-btn">Track Pakage</button>
+        </div> 
+      
           </div>
+        ))}
+    </div>
 
        </div> 
     
