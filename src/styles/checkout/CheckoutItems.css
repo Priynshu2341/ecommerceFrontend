@@ -20,7 +20,7 @@
 }
 
 .delivery-date{
-   color: green;
+   color: #ff7a18;
    margin-left: 20px;
    font-size: 20px;
 }
@@ -52,7 +52,7 @@
 .update-btn, .delete-btn{
     background: none;
     border: none;
-    color: #007600;
+    color: #ff7a18;
     margin-left: 5px;
     font-size: 17px;
 }

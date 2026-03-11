@@ -8,6 +8,7 @@ const ProductCard = ({ product,refreshCart }) => {
   const imageUrl = `http://localhost:8080/${product.image}`;
 
   const [quantity, setQuantity] = useState(1);
+  const [added , setAdded] = useState(false);
   const { token } = useAuth();
   const navigate = useNavigate();
 
@@ -23,6 +24,12 @@ const ProductCard = ({ product,refreshCart }) => {
     });
 
     await refreshCart();
+
+    setAdded(true);
+
+    setTimeout(()=>{
+      setAdded(false);
+    },2000);
   }
 
   return (
@@ -43,8 +50,11 @@ const ProductCard = ({ product,refreshCart }) => {
             <option key={q} value={q}>{q}</option>
           ))}
         </select>
+        {added && <p> {'\u2713'} Added </p> } 
         
       </div>
+
+      
 
       <button className="add-to-cart-btn" onClick={handleAddToCart}>
         Add to Cart

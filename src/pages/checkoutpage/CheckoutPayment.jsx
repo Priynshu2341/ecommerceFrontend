@@ -1,4 +1,4 @@
-// /pages/checkoutpage/CheckoutPayment.jsx
+
 
 import "../../styles/checkout/checkoutPayment.css";
 
