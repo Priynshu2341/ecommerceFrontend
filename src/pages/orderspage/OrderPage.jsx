@@ -1,10 +1,10 @@
 import { HomePageHeader } from "../homepage/HomePageHeader";
 import { OrderContent } from "./OrderContent";
-export function OrderPage({cart}){
+export function OrderPage({cart , refreshCart}){
     return(
        <>
        <HomePageHeader cart={cart} />
-       <OrderContent />
+       <OrderContent cart= {cart} refreshCart={refreshCart} />
        </> 
       
       

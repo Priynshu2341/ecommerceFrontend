@@ -88,7 +88,7 @@ function App() {
 
       <Route path="/register" element={<RegisterPage />} />
 
-      <Route path="/orders" element={<OrderPage cart={cart}/>} />
+      <Route path="/orders" element={<OrderPage cart={cart} refreshCart={refreshCart}/>} />
 
     </Routes>
   );

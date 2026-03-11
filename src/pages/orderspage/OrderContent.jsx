@@ -4,7 +4,7 @@ import { useAuth } from "../../auth/AuthContext";
 import { useEffect, useState } from "react";
 import '../../styles/orders/OrderContent.css'
 
-export function OrderContent(){
+export function OrderContent({cart , refreshCart}){
     const [orders,setOrders] = useState([]);
 
     const { token } = useAuth();
@@ -77,7 +77,7 @@ export function OrderContent(){
 
         <div className="order-detail-div">
         {order.items.map((item) => (
-       <div key={item.productId} className="order-item-row">
+       <div key={`${item.productID}`} className="order-item-row">
       <img
         className="order-image"
         src={`/${item.image}`}
@@ -93,9 +93,9 @@ export function OrderContent(){
           Quantity: {item.quantity}
         </p>
 
-       <button className="add-to-cart-order-btn">
-        <img className="add-to-cart-logo" src="/images/icons/cart-icon.png" />
-        
+       <button 
+        className="add-to-cart-order-btn">
+        <img className="add-to-cart-logo" src="/images/icons/cart-icon.png" /> 
         Add to Cart
       </button>
       </div>
