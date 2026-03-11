@@ -3,12 +3,28 @@ import { getOrders } from "../../api/orderApi";
 import { useAuth } from "../../auth/AuthContext";
 import { useEffect, useState } from "react";
 import '../../styles/orders/OrderContent.css'
+import { addToCart } from "../../api/productApi";
 
-export function OrderContent({cart , refreshCart}){
+export function OrderContent({refreshCart}){
     const [orders,setOrders] = useState([]);
-
     const { token } = useAuth();
     const navigate = useNavigate();
+
+    async function handleAddToCart(item) {
+      if(!token){
+        navigate("/login")
+        return;
+      }
+
+      await addToCart({
+        productId: item,
+        quantity: 1
+      })
+
+      await refreshCart();
+      
+     
+    }
   
     useEffect( () => {
         async function getOrder() {
@@ -76,7 +92,7 @@ export function OrderContent({cart , refreshCart}){
           </div> 
 
         <div className="order-detail-div">
-        {order.items.map((item) => (
+        {order.items.map(( item ) => (
        <div key={`${item.productID}`} className="order-item-row">
       <img
         className="order-image"
@@ -93,8 +109,8 @@ export function OrderContent({cart , refreshCart}){
           Quantity: {item.quantity}
         </p>
 
-       <button 
-        className="add-to-cart-order-btn">
+       <button onClick={() => handleAddToCart(item.productID)}
+        className="add-to-cart-order-btn"> 
         <img className="add-to-cart-logo" src="/images/icons/cart-icon.png" /> 
         Add to Cart
       </button>

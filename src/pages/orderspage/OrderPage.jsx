@@ -4,7 +4,7 @@ export function OrderPage({cart , refreshCart}){
     return(
        <>
        <HomePageHeader cart={cart} />
-       <OrderContent cart= {cart} refreshCart={refreshCart} />
+       <OrderContent  refreshCart={refreshCart} />
        </> 
       
       
