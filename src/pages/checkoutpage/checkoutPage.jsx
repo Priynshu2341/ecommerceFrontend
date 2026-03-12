@@ -31,7 +31,7 @@ export function CheckoutPage({ cart, refreshCart }) {
         refreshCart={refreshCart}
       />
 
-      <CheckoutItems cart={cart} />
+      <CheckoutItems cart={cart} refreshCart={refreshCart}/>
     </>
   );
 }
