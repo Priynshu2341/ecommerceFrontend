@@ -58,7 +58,7 @@ hr {
 }
 
 .order-btn:hover:not(:disabled) {
-  background: #157a5b;
+  background:  #ff7a18,;
 }
 
 .empty-text {

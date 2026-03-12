@@ -35,7 +35,7 @@ const ProductCard = ({ product,refreshCart }) => {
   return (
     <div className="product-card">
       <img src={imageUrl} alt={product.name} />
-      <h4>{product.name}</h4>
+      <h4 className="name-text">{product.name}</h4>
       <p className="stars">⭐ {product.rating.stars} ({product.rating.count})</p>
       <strong className="price-text">${(product.priceCents / 100).toFixed(2)}</strong>
 
