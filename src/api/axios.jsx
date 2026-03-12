@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const backendApi = axios.create({
-    baseURL: "http://localhost:8080/api/v1"
+    baseURL: "https://ecommerce-backend-x2cb.onrender.com/api/v1"
 })
 
 backendApi.interceptors.request.use((config) =>{
