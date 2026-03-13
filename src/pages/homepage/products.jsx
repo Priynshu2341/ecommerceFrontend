@@ -5,7 +5,7 @@ import { addToCart } from "../../api/productApi";
 import "../../styles/homepage/product.css";
 
 const ProductCard = ({ product,refreshCart }) => {
-  const imageUrl = `http://localhost:8080/${product.image}`;
+  const imageUrl = `https://ecommerce-backend-qmbp.onrender.com/${product.image}`;
 
   const [quantity, setQuantity] = useState(1);
   const [added , setAdded] = useState(false);
