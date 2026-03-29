@@ -7,8 +7,6 @@ import { HomePageHeader } from "./HomePageHeader";
 
 const HomePage = ( {products,cart,loading,error, refreshCart }) => {
 
- 
-
     if(loading) return <p> Loading Products... </p>
     if(error) return <p>{error}</p>
 
