@@ -12,6 +12,7 @@ import { CheckoutPage } from "./pages/checkoutpage/checkoutPage";
 import HomePage from "./pages/homepage/HomePage";
 
 import { Route, Routes } from "react-router-dom";
+import { SearchPage } from "./pages/searchpage/SearchPage";
 
 function App() {
 
@@ -87,6 +88,8 @@ function App() {
       />
 
       <Route path="/register" element={<RegisterPage />} />
+
+      <Route path="/search" element={<SearchPage />} ></Route>
 
       <Route path="/orders" element={<OrderPage cart={cart} refreshCart={refreshCart}/>} />
 

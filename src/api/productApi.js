@@ -21,3 +21,10 @@ export const addToCart = async ({ productId, quantity }) =>{
         console.log("added to cart");
         return response.data;
 }
+
+export const ProductSearch = async (name) => {
+    console.log(name);
+    const response = await backendApi.get(`/search?productName=${name}`)
+    return response.data;
+    
+} 

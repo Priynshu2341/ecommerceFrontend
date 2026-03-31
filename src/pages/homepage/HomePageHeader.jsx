@@ -1,13 +1,29 @@
 import "../../styles/shared/header.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
+import { ProductSearch } from "../../api/productApi";
+import { useState } from "react";
 
 export function HomePageHeader({ cart }) {
+  const [searchText,setSearchText] = useState("");
+  const [searchProducts,setSearchProducts] = useState([]);
+
   const { token, logout } = useAuth();
   const navigate = useNavigate();
 
   function handleLogout() {
     logout();
+  }
+
+  async function handleSearch(){
+    try{
+       const products = await ProductSearch(searchText);
+      setSearchProducts(products);
+      navigate(`/search?productName=${searchText}`)
+    }catch(error){
+      console.error(error);
+    }
+   
   }
 
   const cartCount = token && cart ? cart.cartQuantity : 0;
@@ -22,8 +38,13 @@ export function HomePageHeader({ cart }) {
       </div>
 
       <div className="middle-section">
-        <input className="search-bar" type="text" placeholder="Search" />
-        <button className="search-button">
+        <input className="search-bar"
+         type="text"
+          placeholder="Search"
+          value={searchText}
+          onChange={(e) => setSearchText(e.target.value)}
+          />
+        <button onClick={handleSearch} className="search-button">
           <img className="search-icon" src="/images/icons/search-icon.png" alt="Search" />
         </button>
       </div>
