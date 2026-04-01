@@ -94,6 +94,10 @@
   flex-shrink: 0;
 }
 
+.header .search-button:hover {
+  cursor: pointer;
+}
+
 .header .search-icon {
   height: 25px;
   margin-left: 0px;

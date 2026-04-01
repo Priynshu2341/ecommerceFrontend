@@ -10,6 +10,7 @@ import { useAuth } from './auth/AuthContext';
 import { fetchCart } from './store/cartThunks';
 import { CheckoutPage } from './pages/checkoutpage/CheckoutPage';
 import { OrderPage } from './pages/orderpage/OrderPage';
+import { SearchPage } from './pages/searchpage/SearchPage';
 
 
 
@@ -53,6 +54,7 @@ function App() {
          <Route path='/register' element={<RegisterPage />} />
          <Route path='/checkout' element={<CheckoutPage />} />
          <Route path='/orders' element= {<OrderPage />} />
+         <Route path='/search' element= {<SearchPage />} />
     </Routes>
   );
 
