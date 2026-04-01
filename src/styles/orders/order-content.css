@@ -1,0 +1,166 @@
+
+.order-container {
+  max-width: 1100px;
+  margin: 100px auto 40px auto;
+  padding: 0 20px;
+}
+
+.order-title {
+  font-size: 32px;
+  font-weight: bold;
+  margin-bottom: 30px;
+}
+
+
+.info-div {
+  border: 1px solid rgb(222, 222, 222);
+  border-radius: 6px;
+  padding: 20px 30px;
+  display: flex;
+  justify-content: space-between;  
+  align-items: center;
+  margin-top: 20px;
+}
+
+.info-block {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.order-placed-text{
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.date-text{
+    font-weight: bold;
+    margin-left: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.total-text{
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.total-amount{
+    font-weight: bold;
+    margin-left: 15px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+
+.orderId-text{
+    font-weight: bold;
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+.orderId-main{
+    font-weight: bold;
+    margin-left: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.info-label {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.info-value {
+  font-size: 18px;
+}
+
+
+
+.order-detail-div {
+  border: 1px solid rgb(222, 222, 222);
+  border-top: none;
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px ;
+}
+
+
+.order-item-row {
+  display: flex;
+  align-items: center;  
+  gap: 40px;
+ 
+}
+
+
+.order-image {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+
+
+.order-details {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+
+.order-name-text{
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.order-price-text{
+   font-size: 20px;
+   
+}
+
+.order-quantity-text{
+    font-size: 20px;
+    
+}
+
+.cancel-btn-div{
+    margin-left: auto;
+}
+
+
+.cancel-btn{
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: white;
+}
+
+.cart-img-btn{
+  width: 25px;
+}
+
+.add-to-cart-logo{
+  width: 20px;
+  height: 20px;
+  margin-right: 10px;
+}
+
+.add-to-cart-order-btn{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   background: linear-gradient(135deg, #ff7a18, #ffb347);
+   color: #fff;
+   border: none;
+   font-size: 15px;
+   border-radius: 5px;
+   padding: 7px;
+   width: 150px;
+   height: 35px;
+   margin-top: 2px;
+}
+
+.add-to-cart-order-btn:hover{
+   cursor: pointer;
+}
