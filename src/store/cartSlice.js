@@ -60,14 +60,20 @@ const cartSlice = createSlice({
       })
     
       .addCase(updateCartItem.fulfilled, (state, action) => {
-        return { ...state, ...action.payload };
+        state.loading = false;
+        state.items = action.payload.items;
+        state.totalQuantity = action.payload.cartQuantity;
+        state.totalPriceCents = action.payload.totalPriceCents;
+              
       })
       .addCase(deleteCartItem.fulfilled, (state, action) => {
-        return { ...state, ...action.payload };
+        state.loading = false;
+        state.items = action.payload.items;
+        state.totalQuantity = action.payload.cartQuantity;
+        state.totalPriceCents = action.payload.totalPriceCents;
       })
 
-      .addCase(checkoutThunk.fulfilled,(state,action) => {
-           
+      .addCase(checkoutThunk.fulfilled,(state,action) => {       
          state.loading = false,
          state.items = [];
          state.totalQuantity = 0;
