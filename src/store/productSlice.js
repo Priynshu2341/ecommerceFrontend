@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit"
-import { productThunk } from "./productThunk";
+import { productsThunk } from "./productThunk";
 
 
 const initialState = {
@@ -18,27 +18,40 @@ const initialState = {
 const productSlice = createSlice({
     name: "products",
     initialState,
-    reducers : {},
+    reducers : {
+      setPage: (state, action) =>
+     {
+        const newPage = action.payload;
+        if (newPage >= 0 && newPage < state.totalPages) {
+            state.pageNumber = newPage;
+            console.log("setting page number to ",newPage)
+        }
+        }
+    },
     extraReducers : (builder) => {
         builder
-        .addCase(productThunk.fulfilled,(state,action) => {
+        .addCase(productsThunk.fulfilled,(state,action) => {
+            state.loading = false;
             state.content = action.payload.content;
             state.totalPages = action.payload.totalPages;
             state.first = action.payload.first;
             state.last = action.payload.last;
-            state.pageNumber = action.payload.pageable.pageNumber;
+            state.pageNumber = action.payload.number;
             state.totalElements = action.payload.totalElements;
         })
 
-         .addCase(productThunk.pending,(state,action) => {
+         .addCase(productsThunk.pending,(state,action) => {
             state.loading = true;
         })
 
-         .addCase(productThunk.fulfilled,(state,action) => {
-          state.error = action.payload;
+         .addCase(productsThunk.rejected,(state,action) => {
+            state.loading = false;
+            state.error = action.error.message;
         })
+
+
     }
 })
 
-
+export const {setPage} = productSlice.actions;
 export default productSlice.reducer;

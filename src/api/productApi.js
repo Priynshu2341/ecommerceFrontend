@@ -35,7 +35,7 @@ export const refreshCart = async () => {
 }
 
 
-export const getProductPage = async  () => {
-   const response = backendApi.get("/product/all/page");
+export const getProductPage = async  ({page,size}) => {
+   const response = backendApi.get(`/product/all/page?page=${page}&size=${size}`);
    return response;
 }

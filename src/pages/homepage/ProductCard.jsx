@@ -62,6 +62,7 @@ const ProductCard = ({product}) => {
         Add to Cart
       </button>
     </div>
+
   );
 };
 

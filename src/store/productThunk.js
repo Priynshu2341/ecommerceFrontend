@@ -4,11 +4,11 @@ import { getProductPage } from "../api/productApi";
 
 
 
-export const productThunk = createAsyncThunk("products/all",
-    async (_, {rejectWithValue}) => {
+export const productsThunk = createAsyncThunk("products/all",
+    async ({page,size}, {rejectWithValue}) => {
      try{
-        const response = await getProductPage();
-        return response;
+        const response = await getProductPage({page,size});
+        return response.data;
      }catch(e){
         return rejectWithValue(e.response?.data);
      };
