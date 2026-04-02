@@ -1,8 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { searchProductsThunk } from "./searchProductThunks";
+import { searchProductThunk } from "./searchProductThunks";
 
 
-const initialValue = {
+
+const initialState = {
     products : [],
     loading : false,
     error : null
@@ -10,24 +11,24 @@ const initialValue = {
 
 
 
-const searchProductSlice = createSlice({
+export const searchProductSlice = createSlice({
     name: "searchProducts",
-    initialValue,
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
        builder.
-       addCase(searchProductsThunk.fulfilled,(state,action) => {
+       addCase(searchProductThunk.fulfilled,(state,action) => {
         state.products = action.payload;
         state.loading = false;
         state.error = null;
        })
 
-        addCase(searchProductsThunk.pending,(state,action) => {
+        .addCase(searchProductThunk.pending,(state,action) => {
         state.loading = true;
         
        })
 
-        addCase(searchProductsThunk.rejected,(state,action) => { 
+       .addCase(searchProductThunk.rejected,(state,action) => { 
         state.loading = false;
         state.error = action.payload;
        })
@@ -35,4 +36,3 @@ const searchProductSlice = createSlice({
 })
 
 
-export default searchProductSlice.reducer;

@@ -1,26 +1,45 @@
 import "../../styles/shared/header.css";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
-import { useState } from "react";
-import { useSelector } from "react-redux"
+import { useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 
-export function HomePageHeader( ) {
-  const [searchText,setSearchText] = useState("");
-  const [searchProducts,setSearchProducts] = useState([]);
+export function HomePageHeader() {
+  const [searchText, setSearchText] = useState("");
 
   const { token, logout } = useAuth();
   const navigate = useNavigate();
-  const cart = useSelector((state) => state.cart);
- 
+  const location = useLocation();
 
+  const cart = useSelector((state) => state.cart);
+
+  
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const query = params.get("query") || "";
+    setSearchText(query);
+  }, [location.search]);
 
   function handleLogout() {
     logout();
   }
 
-   
+  
+  function handleSearch() {
+    if (!searchText.trim()) return;
 
-  const cartCount = !token ? 0 : cart.totalQuantity
+    navigate(`/search?query=${encodeURIComponent(searchText)}`);
+  }
+
+   function handleKeydown(e){
+    if(e.key === "Enter"){
+      handleSearch();
+    }
+    }
+
+
+
+  const cartCount = !token ? 0 : cart.totalQuantity;
 
   return (
     <div className="header">
@@ -32,13 +51,16 @@ export function HomePageHeader( ) {
       </div>
 
       <div className="middle-section">
-        <input className="search-bar"
-         type="text"
+        <input
+          className="search-bar"
+          type="text"
           placeholder="Search"
           value={searchText}
           onChange={(e) => setSearchText(e.target.value)}
-          />
-        <button  className="search-button">
+          onKeyDown={handleKeydown}
+        />
+
+        <button onClick={handleSearch} className="search-button">
           <img className="search-icon" src="/images/icons/search-icon.png" alt="Search" />
         </button>
       </div>

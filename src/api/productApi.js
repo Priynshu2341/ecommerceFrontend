@@ -24,7 +24,7 @@ export const addToCart = async ({ productId, quantity }) =>{
 
 export const ProductSearch = async (name) => {
     console.log(name);
-    const response = await backendApi.get(`/search?productName=${name}`)
+    const response = await backendApi.get(`/product/search?productName=${name}`)
     return response.data;
     
 }  

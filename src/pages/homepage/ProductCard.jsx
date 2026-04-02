@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
-import { addToCart } from "../../api/productApi";
 import "../../styles/homepage/product.css";
-import { addItemToCart, refreshCartItems } from "../../store/cartThunks";
+import { addItemToCart } from "../../store/cartThunks";
 import { useDispatch } from "react-redux";
 
 const ProductCard = ({product}) => {
