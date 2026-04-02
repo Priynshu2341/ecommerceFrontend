@@ -33,3 +33,9 @@ export const refreshCart = async () => {
        return await getCart();
    
 }
+
+
+export const getProductPage = async  () => {
+   const response = backendApi.get("/product/all/page");
+   return response;
+}
