@@ -11,6 +11,7 @@ export function CheckoutPayment() {
 
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+  const cartCount = token ? cart.cartQuantity : 0;
   
   async function handleCheckout() {
 
@@ -19,8 +20,13 @@ export function CheckoutPayment() {
       return;
     }
 
+    if(cartCount === 0){
+      alert("cart is empty")
+      return;
+    }
+
     try { 
-      dispatch(checkoutThunk())
+      await dispatch(checkoutThunk()).unwrap();
       alert("Order Sucessfull");
       navigate("/");
 
@@ -32,7 +38,7 @@ export function CheckoutPayment() {
 
   if (!cart) return <p>Loading cart...</p>;
 
-  const cartCount = token ? cart.cartQuantity : 0;
+  
 
   const itemsTotal = cart.totalPriceCents / 100;
 

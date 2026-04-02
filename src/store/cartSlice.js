@@ -81,10 +81,12 @@ const cartSlice = createSlice({
       })
 
       .addCase(checkoutThunk.pending, (state, action) => {
-        return { ...state, ...action.payload };
+        state.loading = true
       })
       .addCase(checkoutThunk.rejected, (state, action) => {
-        return { ...state, ...action.payload };
+         state.loading = false;
+         state.error = action.error.message
+         
       })
 
   },
