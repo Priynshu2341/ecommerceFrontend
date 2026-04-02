@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
 
@@ -7,17 +7,16 @@ import { HomePageHeader } from "../homepage/HomePageHeader";
 import { SearchContent } from "./SearchContent";
 
 export function SearchPage() {
-  const location = useLocation();
+  const [searchParams] = useSearchParams();
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const query = params.get("query");
+  const query = searchParams.get("query");
 
+  useEffect(() => {
     if (query) {
       dispatch(searchProductThunk(query));
     }
-  }, [location.search, dispatch]);
+  }, [query, dispatch]);
 
   return (
     <div>

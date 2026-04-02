@@ -1,82 +1,78 @@
-
+import { useEffect } from "react";
 import ProductCard from "./ProductCard";
-import "../../styles/homepage/product.css"
+import "../../styles/homepage/product.css";
 import { HomePageHeader } from "./HomePageHeader";
 import { useDispatch, useSelector } from "react-redux";
-import { setPage } from "../../store/productSlice";
+import { useSearchParams } from "react-router-dom";
+import { productsThunk } from "../../store/productThunk";
 
+function HomePage() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const dispatch = useDispatch();
 
+  const pageFromUrl = Math.max(0, parseInt(searchParams.get("page")) || 0);
+  const sizeFromUrl = Math.max(1, parseInt(searchParams.get("size")) || 10);
 
-function HomePage(){
+  const productPage = useSelector((state) => state.products);
+  const { content: products, loading, error, first, last, totalPages } = productPage;
 
-    const cart = useSelector((state) => state.cart);
-    const dispatch = useDispatch();
- 
+  
+  useEffect(() => {
+    dispatch(productsThunk({ page: pageFromUrl, size: sizeFromUrl }));
+  }, [dispatch, pageFromUrl, sizeFromUrl]);
 
-    const productPage = useSelector((state) => state.products);
-    const products = productPage.content;
-    
-    
-    if (productPage.error) return <p>{error}</p>
+  function setNewPage(newPage) {
+    if (newPage < 0 || newPage >= totalPages) return;
 
+    setSearchParams({
+      page: newPage,
+      size: sizeFromUrl,
+    });
+  }
 
-    const pageNumber = productPage.pageNumber;
+  if (error) return <p>{error}</p>;
 
-    console.log(pageNumber);
+  return (
+    <>
+      <HomePageHeader />
 
-    function setNewPage(newPage){
-      console.log("oage number is ", newPage);
-      dispatch(setPage(newPage));
-      console.log("sucessfull number is ", newPage);
-
-    }
-    
-
-    return (
-     <>
-        <HomePageHeader  />
-
-         {
-          productPage.loading ? (
-            
-            <div className="loading">
-            <div className="spinner"></div>
-          </div> 
-
-          
-          ) : (
-          <div>
-           <div className="products-container">
-            {products.map ( product => (
-            <ProductCard key={product.id} product={product}  />
+      {loading ? (
+        <div className="loading">
+          <div className="spinner"></div>
+        </div>
+      ) : (
+        <>
+          <div className="products-container">
+            {products?.map((product) => (
+              <ProductCard key={product.id} product={product} />
             ))}
-            </div>
-            
+          </div>
 
           <div className="page-btn-div">
-            <button disabled={productPage.first}
-            onClick={() => setNewPage(pageNumber - 1)}
-            
-            >Prev</button>
+            <button
+              className="page-btn"
+              disabled={first}
+              onClick={() => setNewPage(pageFromUrl - 1)}
+            >
+              ← Prev
+            </button>
 
-            <button disabled= {productPage.last}
-                onClick={() => setNewPage(pageNumber + 1)}
-            >Next</button>
-        </div>
+            <span className="page-info">
+              Page {pageFromUrl + 1} of {totalPages}
+            </span>
+
+            <button
+              className="page-btn"
+              disabled={last}
+              onClick={() => setNewPage(pageFromUrl + 1)}
+            >
+              Next →
+            </button>
           </div>
-           
-         )
+        </>
+      )}
+    </>
+  );
+}
 
-
-
-
-               }
-
-     
-
-
-     </>
-       
-    );
-};
 export default HomePage;
