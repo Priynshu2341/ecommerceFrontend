@@ -15,11 +15,11 @@ export function CheckoutItems() {
   const cart = useSelector((state) => state.cart)
   const dispatch = useDispatch();
 
-  const {token} = useAuth();
+  const {accessToken} = useAuth();
   const navigate = useNavigate();
 
   async function handleDeleteBtn(productId) {
-    if(!token){
+    if(!accessToken){
       navigate("/login")
       return;
     }
@@ -29,7 +29,7 @@ export function CheckoutItems() {
   }
   
   async function handleUpdateBtn(productID,quantity) {
-       if(!token){
+       if(!accessToken){
         navigate("/login")
         return;
        }

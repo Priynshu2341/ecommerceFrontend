@@ -1,15 +1,17 @@
 import "../../styles/shared/header.css";
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link ,useLocation, useNavigate } from "react-router-dom";
 import { useAuth } from "../../auth/AuthContext";
 import { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import {fetchCart} from "../../store/cartThunks"
 
 export function HomePageHeader() {
   const [searchText, setSearchText] = useState("");
 
-  const { token, logout } = useAuth();
+  const { accessToken , logout } = useAuth();
   const navigate = useNavigate();
   const location = useLocation();
+ 
 
   const cart = useSelector((state) => state.cart);
 
@@ -39,7 +41,8 @@ export function HomePageHeader() {
 
 
 
-  const cartCount = !token ? 0 : cart.totalQuantity;
+  const cartCount = !accessToken ? 0 : cart.totalQuantity;
+
 
   return (
     <div className="header">
@@ -66,7 +69,7 @@ export function HomePageHeader() {
       </div>
 
       <div className="right-section">
-        {token ? (
+        {accessToken ? (
           <button className="logout-link header-link" onClick={handleLogout}>
             Logout
           </button>

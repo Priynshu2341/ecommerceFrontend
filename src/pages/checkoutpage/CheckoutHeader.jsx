@@ -5,9 +5,9 @@ import { useSelector } from "react-redux";
 
 export function CheckoutHeader(){
 
-    const { token } = useAuth();
+    const { accessToken } = useAuth();
     const cart = useSelector((state) => state.cart);
-    const cartCount = !token ? 0 : cart.totalQuantity
+    const cartCount = !accessToken ? 0 : cart.totalQuantity
 
     return(
     <div className="blank-header">

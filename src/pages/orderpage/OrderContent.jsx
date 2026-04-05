@@ -9,12 +9,12 @@ import { addItemToCart } from "../../store/cartThunks";
 import { getOrdersThunk } from "../../store/orderThunk";
 
 export function OrderContent(){
-    const { token } = useAuth();
+    const { accessToken } = useAuth();
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     async function handleAddToCart(item) {
-      if(!token){
+      if(!accessToken){
         navigate("/login")
         return;
       }
@@ -24,7 +24,7 @@ export function OrderContent(){
   
     useEffect( () => {
         async function getOrder() {
-        if(!token){
+        if(!accessToken){
             navigate("/")
             return
         }
@@ -36,7 +36,7 @@ export function OrderContent(){
         }
     }
     getOrder();
-    },[token,dispatch])
+    },[accessToken,dispatch])
 
     const  {orders} = useSelector((state) => state.orders);
      

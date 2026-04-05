@@ -10,12 +10,12 @@ const ProductCard = ({product}) => {
 
   const [quantity, setQuantity] = useState(1);
   const [added , setAdded] = useState(false);
-  const { token } = useAuth();
+  const { accessToken } = useAuth();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   async function handleAddToCart() {
-    if (!token) {
+    if (!accessToken) {
       navigate("/login");
       return;
     }

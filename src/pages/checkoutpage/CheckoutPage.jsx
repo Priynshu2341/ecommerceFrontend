@@ -6,19 +6,20 @@ import { useEffect } from "react";
 import { CheckoutPayment } from "./CheckoutPayment";
 import { CheckoutItems } from "./CheckoutItems";
 import { CheckoutHeader } from  "./CheckoutHeader"
+import { useAuth } from "../../auth/AuthContext";
 
 export function CheckoutPage() {
   
    const navigate = useNavigate();
-   const token = localStorage.getItem("token");
+   const {accessToken} = useAuth();
 
    useEffect( () => {
-    if(!token){
+    if(!accessToken){
       navigate("/login");
     }
-   },[token, navigate])
+   },[accessToken, navigate])
 
-   if(!token){
+   if(!accessToken){
     return null;
    }
 

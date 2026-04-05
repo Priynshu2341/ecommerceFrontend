@@ -6,16 +6,16 @@ import { useDispatch, useSelector } from "react-redux";
 
 export function CheckoutPayment() {
 
-  const { token } = useAuth();
+  const { accessToken } = useAuth();
   const navigate = useNavigate();
 
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  const cartCount = token ? cart.cartQuantity : 0;
+  const cartCount = accessToken ? cart.cartQuantity : 0;
   
   async function handleCheckout() {
 
-    if (!token) {
+    if (!accessToken) {
       navigate("/login");
       return;
     }

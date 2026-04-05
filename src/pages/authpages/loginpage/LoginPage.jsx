@@ -1,4 +1,4 @@
- import { useEffect, useState } from "react";
+ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../../styles/login-page.css"
 import { loginApi } from "../../../api/login";
@@ -22,7 +22,7 @@ export function LoginPage(){
     try{
       const data = await loginApi({email , password});
       console.log("login Success", data);
-      login(data.token);
+      login(data.accessToken,data.refreshToken);
       navigate("/")
       
     } catch (err){

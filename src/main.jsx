@@ -6,13 +6,15 @@ import { BrowserRouter } from 'react-router-dom'
 import { AuthProvider } from './auth/AuthContext.jsx'
 import { Provider } from 'react-redux'
 import { store } from "./store/store.js"
+import { AppIntilizer } from './auth/AppIntilizer.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Provider store={store}>
       <BrowserRouter>
         <AuthProvider>
-          <App />
+          <AppIntilizer />
+            <App />
         </AuthProvider>
       </BrowserRouter>
     </Provider>

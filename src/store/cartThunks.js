@@ -8,7 +8,7 @@ export const fetchCart = createAsyncThunk(
     async (_,{rejectWithValue }) => {
     try{
         const res = await getCart(); 
-           console.log("sending data to redux state")
+        console.log("sending data to redux state")
         return res;   
         
     }catch(e){

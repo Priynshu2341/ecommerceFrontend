@@ -23,3 +23,4 @@ export const registerApi = async ({email,password,firstname,lastname}) =>{
    console.log("register sucedded:", { email, password });
    return response.data;
 }
+
