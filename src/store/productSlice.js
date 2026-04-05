@@ -1,57 +1,61 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 import { productsThunk } from "./productThunk";
 
-
 const initialState = {
-    content : [],
-    totalPages: 0,
-    first : true,
-    last : false,
-    pageNumber : 0 ,
-    totalElements: 0,
-    loading : false,
-    error : null
-
-}
-
+  content: [],
+  totalPages: 0,
+  first: true,
+  last: false,
+  pageNumber: 0,
+  totalElements: 0,
+  loading: false,
+  error: null,
+};
 
 const productSlice = createSlice({
-    name: "products",
-    initialState,
-    reducers : {
-      setPage: (state, action) =>
-     {
-        const newPage = action.payload;
-        if (newPage >= 0 && newPage < state.totalPages) {
-            state.pageNumber = newPage;
-            console.log("setting page number to ",newPage)
+  name: "products",
+  initialState,
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+      .addCase(productsThunk.pending, (state) => {
+        state.loading = true;
+      })
+
+      .addCase(productsThunk.fulfilled, (state, action) => {
+        state.loading = false;
+
+        const incomingPage = action.payload.number;
+
+        
+        if (
+          incomingPage !== 0 &&
+          incomingPage !== state.pageNumber + 1
+        ) {
+          return;
         }
+
+        if (incomingPage === 0) {
+          state.content = action.payload.content;
+        } else {
+          state.content = [
+            ...state.content,
+            ...action.payload.content,
+          ];
         }
-    },
-    extraReducers : (builder) => {
-        builder
-        .addCase(productsThunk.fulfilled,(state,action) => {
-            state.loading = false;
-            state.content = action.payload.content;
-            state.totalPages = action.payload.totalPages;
-            state.first = action.payload.first;
-            state.last = action.payload.last;
-            state.pageNumber = action.payload.number;
-            state.totalElements = action.payload.totalElements;
-        })
 
-         .addCase(productsThunk.pending,(state,action) => {
-            state.loading = true;
-        })
+        state.pageNumber = incomingPage;
+        state.totalPages = action.payload.totalPages;
+        state.first = action.payload.first;
+        state.last = action.payload.last;
+        state.totalElements = action.payload.totalElements;
+      })
 
-         .addCase(productsThunk.rejected,(state,action) => {
-            state.loading = false;
-            state.error = action.error.message;
-        })
+      .addCase(productsThunk.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.error.message;
+      });
+  },
+});
 
-
-    }
-})
-
-export const {setPage} = productSlice.actions;
 export default productSlice.reducer;

@@ -1,6 +1,6 @@
 .products-container {
   display: grid;
-  grid-template-columns: repeat(7, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   padding-top: 70px;
 }
 
@@ -53,19 +53,19 @@
 .stars{
   margin-top: 5px;
   margin-bottom: 5px;
-  padding-left: 10px;
+  padding-left: 25px;
 }
 
 .qty-text{
    margin-top: 5px;
   margin-bottom: 5px;
-  padding-left: 10px;
+  padding-left: 25px;
 }
 
 .price-text{
    margin-top: 5px;
   margin-bottom: 5px;
-  padding-left: 10px;
+  padding-left: 25px;
 }
 
 .quantity-row {
@@ -112,7 +112,8 @@
 
 
 .name-text {
-  padding-left: 10px;
+  padding-left: 25px;
+  padding-top: 15px;
   font-size: 20px;
   font-weight: 500;
   margin: 6px 0;
