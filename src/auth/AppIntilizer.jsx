@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useAuth } from "./AuthContext";
 import {fetchCart} from "../store/cartThunks"
 import { useDispatch } from "react-redux";
+import { getOrdersThunk } from "../store/orderThunk";
 
 
 
@@ -9,12 +10,15 @@ export function AppIntilizer(){
  
     const {isAuthReady,accessToken} = useAuth();
     const dispatch = useDispatch();
+    
+useEffect(() => {
+ 
 
-    useEffect(() => {
-        if(isAuthReady && accessToken){
-            dispatch(fetchCart());
-        }
-    },[dispatch,isAuthReady,accessToken])
+  if (isAuthReady && accessToken) {
+    dispatch(fetchCart());
+    dispatch(getOrdersThunk());
+  }
+}, [dispatch, isAuthReady, accessToken]);
 
     return null;
 }

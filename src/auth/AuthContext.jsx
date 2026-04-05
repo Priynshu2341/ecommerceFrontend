@@ -42,14 +42,15 @@ export function AuthProvider({ children }) {
     setRefreshToken(null);
     setIsAuthenticated(false);
 
-    window.location.href = "/login"; 
+    window.location.href = "/"; 
   };
 
 
   useEffect(() => {
     const requestInterceptor = backendApi.interceptors.request.use((config) => {
-      if (accessToken) {
-        config.headers.Authorization = `Bearer ${accessToken}`;
+      const token = localStorage.getItem("accessToken");
+      if (token) {
+        config.headers.Authorization = `Bearer ${token}`;
       }
       return config;
     });
@@ -57,7 +58,7 @@ export function AuthProvider({ children }) {
     return () => {
       backendApi.interceptors.request.eject(requestInterceptor);
     };
-  }, [accessToken]);
+  }, []);
 
 
   useEffect(() => {

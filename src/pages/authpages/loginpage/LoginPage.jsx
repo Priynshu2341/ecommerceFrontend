@@ -1,8 +1,9 @@
- import { useState } from "react";
+ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "../../../styles/login-page.css"
 import { loginApi } from "../../../api/login";
 import { useAuth } from "../../../auth/AuthContext";
+
 
 
 export function LoginPage(){
@@ -10,9 +11,10 @@ export function LoginPage(){
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  
 
   const navigate = useNavigate();
-  const { login } = useAuth();
+  const { login, } = useAuth();
   
 
   async function handleSubmit(e) {
@@ -24,7 +26,6 @@ export function LoginPage(){
       console.log("login Success", data);
       login(data.accessToken,data.refreshToken);
       navigate("/")
-      
     } catch (err){
       console.log("Login Failed", err)
       setError("Invalid username or password");
@@ -32,6 +33,8 @@ export function LoginPage(){
 
     
   }
+
+  
 
   return (
     <div className="login-container">

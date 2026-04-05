@@ -1,5 +1,4 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
-import backendApi from "../api/axios"
 import { addToCart, getCart, refreshCart } from "../api/productApi";
 import { checkout, removeCartItem, updateCart } from "../api/orderApi";
 
@@ -8,7 +7,6 @@ export const fetchCart = createAsyncThunk(
     async (_,{rejectWithValue }) => {
     try{
         const res = await getCart(); 
-        console.log("sending data to redux state")
         return res;   
         
     }catch(e){

@@ -1,12 +1,9 @@
 import { useNavigate } from "react-router-dom";
-import { getOrders } from "../../api/orderApi";
 import { useAuth } from "../../auth/AuthContext";
-import { useEffect, useState } from "react";
 import '../../styles/orders/order-content.css'
-import { addToCart } from "../../api/productApi";
 import { useDispatch, useSelector } from "react-redux";
 import { addItemToCart } from "../../store/cartThunks";
-import { getOrdersThunk } from "../../store/orderThunk";
+
 
 export function OrderContent(){
     const { accessToken } = useAuth();
@@ -19,24 +16,9 @@ export function OrderContent(){
         return;
       }
   
-      dispatch(addItemToCart(item,1))   
+      dispatch(addItemToCart({productId: item , quantity :1}))   
     }
-  
-    useEffect( () => {
-        async function getOrder() {
-        if(!accessToken){
-            navigate("/")
-            return
-        }
-        try{
-           dispatch(getOrdersThunk());
-        }
-        catch(e){
-            console.log(e);
-        }
-    }
-    getOrder();
-    },[accessToken,dispatch])
+
 
     const  {orders} = useSelector((state) => state.orders);
      
