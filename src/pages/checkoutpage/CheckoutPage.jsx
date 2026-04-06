@@ -11,18 +11,13 @@ import { useAuth } from "../../auth/AuthContext";
 export function CheckoutPage() {
   
    const navigate = useNavigate();
-   const {accessToken} = useAuth();
+   const { accessToken } = useAuth();
 
    useEffect( () => {
     if(!accessToken){
       navigate("/login");
     }
    },[accessToken, navigate])
-
-   if(!accessToken){
-    return null;
-   }
-
 
   return (
 
