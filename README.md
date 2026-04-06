@@ -1,16 +1,60 @@
-# React + Vite
+# 🛒 E-Commerce Frontend (React)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A production-ready e-commerce frontend built using React, focused on performance, scalable state management, and seamless user experience.
 
-Currently, two official plugins are available:
+🔗 **Live Demo:** https://whimsical-valkyrie-77e952.netlify.app/  
+🔗 **Backend Repo:** https://github.com/Priynshu2341/Ecommerce-Backend  
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+---
 
-## React Compiler
+## 🚀 Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- 🔐 JWT Authentication (Access + Refresh Token)
+- 🔄 Automatic token refresh using Axios interceptors
+- 🛍️ Product listing with **infinite scroll pagination**
+- 🔍 Search & filtering with URL query synchronization
+- 🛒 Cart management with global state (Redux Toolkit)
+- ⚡ Optimized API calls to reduce redundant requests
+- ⏳ Loading states & smooth UX handling
+- 📱 Responsive UI design
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🧠 Tech Stack
+
+- **React** (Hooks, Component Architecture)
+- **Redux Toolkit** (Global State Management)
+- **React Router** (Routing & Query Params)
+- **Axios** (API Integration)
+- **CSS** (Flexbox, Grid, Responsive Design)
+
+---
+
+## ⚙️ Architecture Overview
+
+- Modular component-based structure
+- Centralized API handling using Axios
+- Global state managed using Redux slices
+- Async operations handled with `createAsyncThunk`
+- URL-driven state (pagination & search)
+
+---
+
+## 🔐 Authentication Flow
+
+- Login returns **access + refresh token**
+- Access token stored and attached to API requests
+- Axios interceptor handles:
+  - Expired token (401)
+  - Calls refresh API
+  - Retries failed request automatically
+
+---
+
+## 📦 Installation & Setup
+
+```bash
+git clone https://github.com/Priynshu2341/ecommerceFrontend.git
+cd ecommerceFrontend
+npm install
+npm run dev
