@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from "react";
-import backendApi from "../api/axios";
+import backendApi, { refreshApi } from "../api/axios";
 
 const AuthContext = createContext();
 
@@ -13,7 +13,7 @@ export function AuthProvider({ children }) {
   );
 
   const [isAuthenticated, setIsAuthenticated] = useState(!!accessToken);
-  const [isAuthReady,setIsAuthReady] = useState(false);
+  const [isAuthReady, setIsAuthReady] = useState(false);
 
   useEffect(() => {
     const access = localStorage.getItem("accessToken");
@@ -22,10 +22,9 @@ export function AuthProvider({ children }) {
     if (access) setAccessToken(access);
     if (refresh) setRefreshToken(refresh);
 
-    setIsAuthReady(true); 
+    setIsAuthReady(true);
   }, []);
 
- 
   const login = (access, refresh) => {
     localStorage.setItem("accessToken", access);
     localStorage.setItem("refreshToken", refresh);
@@ -35,17 +34,16 @@ export function AuthProvider({ children }) {
     setIsAuthenticated(true);
   };
 
- 
   const logout = () => {
     localStorage.clear();
     setAccessToken(null);
     setRefreshToken(null);
     setIsAuthenticated(false);
 
-    window.location.href = "/"; 
+    window.location.href = "/";
   };
 
-
+  // 🔥 Attach access token
   useEffect(() => {
     const requestInterceptor = backendApi.interceptors.request.use((config) => {
       const token = localStorage.getItem("accessToken");
@@ -60,7 +58,7 @@ export function AuthProvider({ children }) {
     };
   }, []);
 
-
+  // 🔥 Handle refresh logic
   useEffect(() => {
     let isRefreshing = false;
     let queue = [];
@@ -89,17 +87,21 @@ export function AuthProvider({ children }) {
           isRefreshing = true;
 
           try {
-            const res = await backendApi.post("/auth/refresh", {
-              refreshToken,
+            
+            const storedRefresh = localStorage.getItem("refreshToken");
+
+            const res = await refreshApi.post("/auth/refresh", {
+              refreshToken: storedRefresh,
             });
 
             const newAccessToken = res.data.accessToken;
 
             localStorage.setItem("accessToken", newAccessToken);
             setAccessToken(newAccessToken);
-            console.log("refresh sucessfull");
 
-            
+            console.log("refresh successful");
+
+           
             queue.forEach((cb) => cb(newAccessToken));
             queue = [];
 
@@ -107,7 +109,7 @@ export function AuthProvider({ children }) {
             return backendApi(originalRequest);
 
           } catch (err) {
-            logout(); 
+            logout();
             return Promise.reject(err);
           } finally {
             isRefreshing = false;
@@ -121,7 +123,7 @@ export function AuthProvider({ children }) {
     return () => {
       backendApi.interceptors.response.eject(responseInterceptor);
     };
-  }, [refreshToken]);
+  }, []);
 
   return (
     <AuthContext.Provider

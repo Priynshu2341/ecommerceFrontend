@@ -23,33 +23,38 @@ const productSlice = createSlice({
       })
 
       .addCase(productsThunk.fulfilled, (state, action) => {
-        state.loading = false;
+          state.loading = false;
 
-        const incomingPage = action.payload.number;
+          const incomingPage = action.payload.number;
 
-        
-        if (
-          incomingPage !== 0 &&
-          incomingPage !== state.pageNumber + 1
-        ) {
-          return;
-        }
+          if (
+            incomingPage !== 0 &&
+            incomingPage !== state.pageNumber + 1
+          ) {
+            return;
+          }
 
-        if (incomingPage === 0) {
-          state.content = action.payload.content;
-        } else {
-          state.content = [
-            ...state.content,
-            ...action.payload.content,
-          ];
-        }
+          if (incomingPage === 0) {
+            state.content = action.payload.content;
+          } else {
+            const existingIds = new Set(state.content.map(item => item.id));
 
-        state.pageNumber = incomingPage;
-        state.totalPages = action.payload.totalPages;
-        state.first = action.payload.first;
-        state.last = action.payload.last;
-        state.totalElements = action.payload.totalElements;
-      })
+            const filteredNewData = action.payload.content.filter(
+              item => !existingIds.has(item.id)
+            );
+
+            state.content = [
+              ...state.content,
+              ...filteredNewData,
+            ];
+          }
+
+          state.pageNumber = incomingPage;
+          state.totalPages = action.payload.totalPages;
+          state.first = action.payload.first;
+          state.last = action.payload.last;
+          state.totalElements = action.payload.totalElements;
+        })
 
       .addCase(productsThunk.rejected, (state, action) => {
         state.loading = false;

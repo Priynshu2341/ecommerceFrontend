@@ -34,7 +34,7 @@ function HomePage() {
         isFetchingRef.current = true;
 
         dispatch(
-          productsThunk({ page: pageNumber + 1, size: 10 })
+          productsThunk({ page: pageNumber + 1, size: 15 })
         ).finally(() => {
           isFetchingRef.current = false;
         });
