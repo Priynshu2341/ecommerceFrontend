@@ -2,7 +2,7 @@
 
 A production-ready e-commerce frontend built using React, focused on performance, scalable state management, and seamless user experience.
 
-🔗 **Live Demo:** https://whimsical-valkyrie-77e952.netlify.app/  
+🔗 **Live Demo:** https://serene-mermaid-853af3.netlify.app/
 🔗 **Backend Repo:** https://github.com/Priynshu2341/Ecommerce-Backend  
 
 ---
