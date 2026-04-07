@@ -14,10 +14,13 @@ export function CheckoutHeader(){
         <div className="checkout-header">
 
         <div className="left-section">
-            <Link to="/" className="header-link">
-            <img className="logo" src="/images/logo.png" alt="Logo" />
-            <img className="mobile-logo" src="/images/mobile-logo-white.png" alt="Mobile Logo" />
-            </Link>
+         <Link to="/" className="header-link">
+         <div className="store-logo-div">
+            <img className="store-logo"
+            src="/images/store-flow.png" alt="LOGO" />
+         </div>
+           
+         </Link>
         </div>
 
         <div className="middle-side-header">

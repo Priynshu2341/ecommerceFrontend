@@ -48,7 +48,10 @@ export function HomePageHeader() {
     <div className="header">
       <div className="left-section">
         <Link to="/" className="header-link">
-          <img className="logo" src="/images/logo-white.png" alt="Logo" />
+        <div className="logo-div">
+          <img className="store-flow-logo" src="/images/mobile-logo-white.png"></img>
+           <p className="store-flow-text">StoreFlow</p>
+        </div>
           <img className="mobile-logo" src="/images/mobile-logo-white.png" alt="Mobile Logo" />
         </Link>
       </div>
