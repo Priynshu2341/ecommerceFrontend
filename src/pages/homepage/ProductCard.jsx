@@ -19,7 +19,7 @@ function throttle(fn, delay) {
 }
 
 const ProductCard = ({ product }) => {
-  const imageUrl = `https://ecommerce-backend-qmbp.onrender.com/${product.image}`;
+  const imageUrl = `https://ecommerce-backend1-l8fn.onrender.com/${product.image}`;
 
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
@@ -56,7 +56,7 @@ const ProductCard = ({ product }) => {
 
   return (
     <div className="product-card">
-      <img src={imageUrl} alt={product.name} />
+      <img className="img" src={imageUrl} alt={product.name} />
       <h4 className="name-text">{product.name}</h4>
 
       <p className="stars">

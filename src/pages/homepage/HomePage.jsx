@@ -44,8 +44,23 @@ function HomePage() {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [pageNumber, last, dispatch]);
+   
+  if (error) {
+  return (
+    <div className="error-div">
+      <p>Pls Wait Server is Waking UP</p>
+    </div>
+  );
+}
 
-  if (error) return <p>{error}</p>;
+if (loading && products.length === 0) {
+  return (
+    <div className="error-div">
+      <p>Pls Wait Server is Waking UP</p>
+    </div>
+  );
+}
+ 
 
   return (
     <>
