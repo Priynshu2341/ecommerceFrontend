@@ -25,7 +25,7 @@ const productSlice = createSlice({
       .addCase(productsThunk.fulfilled, (state, action) => {
           state.loading = false;
 
-          const incomingPage = action.payload.number;
+          const incomingPage = action.payload.page;
 
           if (
             incomingPage !== 0 &&
@@ -35,11 +35,11 @@ const productSlice = createSlice({
           }
 
           if (incomingPage === 0) {
-            state.content = action.payload.content;
+            state.content = action.payload.products;
           } else {
             const existingIds = new Set(state.content.map(item => item.id));
 
-            const filteredNewData = action.payload.content.filter(
+            const filteredNewData = action.payload.products.filter(
               item => !existingIds.has(item.id)
             );
 

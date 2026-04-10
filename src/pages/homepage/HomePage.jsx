@@ -30,6 +30,8 @@ function HomePage() {
         window.innerHeight + window.scrollY >=
         document.body.offsetHeight - 100;
 
+       
+
       if (bottom && !isFetchingRef.current && !last) {
         isFetchingRef.current = true;
 
