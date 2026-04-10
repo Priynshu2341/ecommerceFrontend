@@ -17,7 +17,7 @@ export function OrderPage(){
     })
 
     return(
-    <div>
+    <div className="container-div">
       <HomePageHeader  />
       <OrderContent   />   
    </div>

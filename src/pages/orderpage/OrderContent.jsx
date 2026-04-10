@@ -92,9 +92,9 @@ export function OrderContent(){
       </button>
       </div>
 
-         <div className="cancel-btn-div">
+         <div className="tracking-div">
           <button 
-          className="cancel-btn">Track Pakage</button>
+          className="tracking-btn">Track Pakage</button>
         </div> 
       
           </div>
