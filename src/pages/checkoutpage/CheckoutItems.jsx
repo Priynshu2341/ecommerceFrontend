@@ -43,9 +43,12 @@ export function CheckoutItems() {
     return <p>Loading items...</p>;
   }
 
+
+
   return (
     <div className="items-grid">
 
+      
 
       {cart.items.map((item)=>(
         <div className="item-card" key={item.productId}>

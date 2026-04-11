@@ -25,7 +25,7 @@
 
 .header .header-link {
   display: inline-block;
-  padding: 6px 9.5px;
+  padding: 5px 9.5px;
   border-radius: 2px;
   cursor: pointer;
   text-decoration: none;
@@ -69,7 +69,7 @@
 
 .header .search-bar {
   flex: 1;
-  width: 0;
+  
   font-size: 16px;
   height: 45px;
   margin-left: 10px;
@@ -115,6 +115,7 @@
   align-items: center;
   padding-left: 13px;
   padding-right: 13px;
+  
 }
 
 .header .login-link {
@@ -125,13 +126,16 @@
   padding-right: 13px;
 }
 
-.header .logout-link {
+.logout-link {
   background-color: #ff7a18;
   color: rgb(252, 249, 249);
   display: flex;
   align-items: center;
   padding-left: 13px;
   padding-right: 13px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  
 }
 
 .header .orders-text {
@@ -148,10 +152,11 @@
 }
 
 .header .cart-icon {
-  width: 38px;
+  width: 35px;
 }
 
 .header .cart-text {
+  margin-top: 5px;
   margin-left: 5px;
   font-size: 15px;
   font-weight: 700;
@@ -248,13 +253,6 @@
     flex-shrink: 0;
   }
 
-  .header .middle-section.active .header .middle-section {
-    flex: 1;
-    max-width: 1000px;
-    margin-left: 10px;
-    margin-right: 10px;
-    display: flex;
-  }
 
   .right-section-mobile.hidden {
     display: none;
