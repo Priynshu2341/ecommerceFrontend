@@ -19,7 +19,7 @@ function throttle(fn, delay) {
 }
 
 const ProductCard = ({ product }) => {
-  const imageUrl = `https://ecommerce-backend1-l8fn.onrender.com/${product.image}`;
+  const imageUrl = `https://venomchat.duckdns.org/shop/${product.image}`;
 
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
@@ -38,7 +38,7 @@ const ProductCard = ({ product }) => {
       addItemToCart({
         productId: product.id,
         quantity: quantity,
-      })
+      }),
     );
 
     setAdded(true);
@@ -48,10 +48,9 @@ const ProductCard = ({ product }) => {
     }, 2000);
   }, [accessToken, navigate, dispatch, product.id, quantity]);
 
-  
   const throttledAddToCart = useMemo(
     () => throttle(handleAddToCart, 500),
-    [handleAddToCart]
+    [handleAddToCart],
   );
 
   return (
@@ -75,7 +74,7 @@ const ProductCard = ({ product }) => {
           value={quantity}
           onChange={(e) => setQuantity(Number(e.target.value))}
         >
-          {[1,2,3,4,5,6,7,8,9].map((q) => (
+          {[1, 2, 3, 4, 5, 6, 7, 8, 9].map((q) => (
             <option key={q} value={q}>
               {q}
             </option>
@@ -85,10 +84,7 @@ const ProductCard = ({ product }) => {
         {added && <p> {"\u2713"} Added </p>}
       </div>
 
-      <button
-        className="add-to-cart-btn"
-        onClick={throttledAddToCart}
-      >
+      <button className="add-to-cart-btn" onClick={throttledAddToCart}>
         Add to Cart
       </button>
     </div>
